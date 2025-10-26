@@ -1,4 +1,7 @@
-# 𝑯𝒆𝒍𝒍𝒐, 𝑰'𝒎 𝑭𝒆𝒐𝒅𝒐𝒓 👋
+<h1>
+  𝑯𝒆𝒍𝒍𝒐, 𝑰'𝒎 𝑭𝒆𝒐𝒅𝒐𝒓
+  <img src="hi.gif" width="100" style="vertical-align: middle; margin-left: 5px;" alt="👋">
+</h1>
 
 ### 𝐹𝑢𝑙𝑙𝑠𝑡𝑎𝑐𝑘 𝑑𝑒𝑣𝑒𝑙𝑜𝑝𝑒𝑟, 𝑎 𝑑𝑎𝑟𝑘 ℎ𝑜𝑟𝑠𝑒 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚𝑚𝑖𝑛𝑔
 
@@ -17,4 +20,6 @@
 [![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff)](#)
 
 ## 𝑨𝒄𝒕𝒊𝒗𝒊𝒕𝒚
-![My stats](https://github-readme-stats.vercel.app/api?username=FeodorCore&show_icons=true&theme=dracula)
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=FeodorCore&layout=compact&theme=dracula&card_width=445" width="700"/>
+
+<img src="https://streak-stats.demolab.com?user=FeodorCore&theme=dracula&date_format=j%20M%5B%20Y%5D&card_width=445"  width="700"/>
