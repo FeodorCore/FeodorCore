@@ -20,6 +20,7 @@
 [![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff)](#)
 
 ## 𝑨𝒄𝒕𝒊𝒗𝒊𝒕𝒚
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=FeodorCore&layout=compact&theme=dracula&card_width=445" width="700"/>
+<img src="https://streak-stats.demolab.com?user=FeodorCore&theme=dracula&date_format=j%20M%5B%20Y%5D&card_width=445"  width="500"/>
 
-<img src="https://streak-stats.demolab.com?user=FeodorCore&theme=dracula&date_format=j%20M%5B%20Y%5D&card_width=445"  width="700"/>
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=FeodorCore&layout=compact&theme=dracula&card_width=445" width="500"/>
+
