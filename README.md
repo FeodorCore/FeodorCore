@@ -18,6 +18,3 @@
 <img src="https://streak-stats.demolab.com?user=FeodorCore&theme=dracula&date_format=j%20M%5B%20Y%5D&card_width=445"  width="300"/>
 
 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=FeodorCore&layout=compact&theme=dracula&card_width=445" width="300"/>
-
-<img src="https://www.codewars.com/users/FeodorCore/badges/large" alt="Codewars" width="300"/>
-[![Codewars Stats](https://codewars-stats-ignacio-cuadra.vercel.app/?username=FeodorCore&theme=dark)](https://www.codewars.com/users/FeodorCore)
