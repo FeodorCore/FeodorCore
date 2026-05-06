@@ -4,11 +4,7 @@
 </h1>
 
 ### *𝑰 𝒋𝒖𝒔𝒕 𝒆𝒏𝒋𝒐𝒚 𝒕𝒉𝒆 𝒑𝒖𝒛𝒛𝒍𝒆.*
-<img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/linux.png" width="25" vertical-align="middle">
-<img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/neovim.png" width="25" vertical-align="middle">
-<img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/git.png" width="25" vertical-align="middle">
-<img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/bash.png" width="25" vertical-align="middle">
-<img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/docker.png" width="25" vertical-align="middle">
+<img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/linux.png" width="25" vertical-align="middle"><img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/neovim.png" width="25" vertical-align="middle"><img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/git.png" width="25" vertical-align="middle"><img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/bash.png" width="25" vertical-align="middle"><img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/docker.png" width="25" vertical-align="middle">
 
 ## 𝑨𝒄𝒕𝒊𝒗𝒊𝒕𝒚
 <img src="https://streak-stats.demolab.com?user=FeodorCore&theme=dracula&date_format=j%20M%5B%20Y%5D&card_width=445"  width="300"/>
