@@ -17,4 +17,4 @@
 ## 𝑨𝒄𝒕𝒊𝒗𝒊𝒕𝒚
 <img src="https://streak-stats.demolab.com?user=FeodorCore&theme=dracula&date_format=j%20M%5B%20Y%5D&card_width=445"  width="300"/>
 
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=FeodorCore&layout=compact&theme=dracula&card_width=445" width="300"/>
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=feodorcore&theme=dracula" width="300" />
