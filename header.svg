@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="100%" height="auto">
+  <defs>
+    <style>
+      /* Движение слева направо */
+      @keyframes moveLR {
+        0%   { transform: translate(-50px, 0); }
+        100% { transform: translate(1300px, 0); }
+      }
+      /* Движение справа налево */
+      @keyframes moveRL {
+        0%   { transform: translate(1250px, 0); }
+        100% { transform: translate(-100px, 0); }
+      }
+      /* Движение сверху вниз */
+      @keyframes moveTD {
+        0%   { transform: translate(0, -50px); }
+        100% { transform: translate(0, 450px); }
+      }
+      /* Движение снизу вверх */
+      @keyframes moveDT {
+        0%   { transform: translate(0, 450px); }
+        100% { transform: translate(0, -50px); }
+      }
+      /* Диагональное движение */
+      @keyframes moveDiag1 {
+        0%   { transform: translate(-50px, -50px); }
+        100% { transform: translate(1300px, 450px); }
+      }
+      @keyframes moveDiag2 {
+        0%   { transform: translate(1250px, -50px); }
+        100% { transform: translate(-100px, 450px); }
+      }
+      /* Пульсация для точек */
+      @keyframes fadePulse {
+        0%, 100% { opacity: 0.15; }
+        50%      { opacity: 0.5; }
+      }
+      /* Плавное покачивание линии */
+      @keyframes sway {
+        0%   { transform: translate(0, 0); }
+        50%  { transform: translate(0, 15px); }
+        100% { transform: translate(0, 0); }
+      }
+    </style>
+  </defs>
+
+  <!-- ===== АНИМИРОВАННЫЙ ФОН (по всей плоскости) ===== -->
+
+  <!-- Точки, летящие вправо -->
+  <circle cx="0" cy="60" r="2.5" fill="#aaaaaa" style="animation: moveLR 18s linear infinite; opacity:0.45;" />
+  <circle cx="0" cy="340" r="3" fill="#999999" style="animation: moveLR 22s linear infinite 3s; opacity:0.4;" />
+  <circle cx="0" cy="180" r="2" fill="#bbbbbb" style="animation: moveLR 25s linear infinite 7s; opacity:0.35;" />
+  <circle cx="0" cy="280" r="3.5" fill="#888888" style="animation: moveLR 20s linear infinite 12s; opacity:0.3;" />
+
+  <!-- Точки, летящие влево -->
+  <circle cx="1200" cy="100" r="2" fill="#aaaaaa" style="animation: moveRL 19s linear infinite; opacity:0.4;" />
+  <circle cx="1200" cy="300" r="3" fill="#999999" style="animation: moveRL 24s linear infinite 5s; opacity:0.45;" />
+  <circle cx="1200" cy="220" r="2.5" fill="#bbbbbb" style="animation: moveRL 21s linear infinite 10s; opacity:0.35;" />
+  <circle cx="1200" cy="380" r="2" fill="#888888" style="animation: moveRL 26s linear infinite 15s; opacity:0.3;" />
+
+  <!-- Точки, движущиеся вертикально -->
+  <circle cx="200" cy="0" r="2" fill="#999999" style="animation: moveTD 23s linear infinite; opacity:0.35;" />
+  <circle cx="1000" cy="0" r="3" fill="#aaaaaa" style="animation: moveTD 20s linear infinite 8s; opacity:0.4;" />
+  <circle cx="600" cy="0" r="2" fill="#bbbbbb" style="animation: moveTD 25s linear infinite 4s; opacity:0.3;" />
+  <circle cx="400" cy="400" r="2.5" fill="#888888" style="animation: moveDT 21s linear infinite 2s; opacity:0.4;" />
+  <circle cx="800" cy="400" r="2" fill="#999999" style="animation: moveDT 27s linear infinite 11s; opacity:0.35;" />
+
+  <!-- Диагональные частицы -->
+  <circle cx="0" cy="0" r="2.5" fill="#999999" style="animation: moveDiag1 28s linear infinite; opacity:0.4;" />
+  <circle cx="1200" cy="0" r="2" fill="#aaaaaa" style="animation: moveDiag2 26s linear infinite 6s; opacity:0.45;" />
+  <circle cx="0" cy="400" r="3" fill="#888888" style="animation: moveDiag2 30s linear infinite 13s; opacity:0.35;" />
+
+  <!-- Пульсирующие статические точки (редкие акценты) -->
+  <circle cx="150" cy="150" r="3" fill="#bbbbbb" style="animation: fadePulse 4s ease-in-out infinite;" />
+  <circle cx="1050" cy="250" r="2.5" fill="#aaaaaa" style="animation: fadePulse 3.5s ease-in-out infinite 1.5s;" />
+  <circle cx="550" cy="80" r="2" fill="#999999" style="animation: fadePulse 5s ease-in-out infinite 2s;" />
+  <circle cx="750" cy="350" r="3" fill="#888888" style="animation: fadePulse 4.5s ease-in-out infinite 3s;" />
+
+  <!-- Плавающие линии -->
+  <line x1="100" y1="50" x2="300" y2="50" stroke="#aaaaaa" stroke-width="1" opacity="0.3" style="animation: moveLR 35s linear infinite;"/>
+  <line x1="900" y1="350" x2="1100" y2="350" stroke="#999999" stroke-width="1.2" opacity="0.25" style="animation: moveRL 33s linear infinite 10s;"/>
+  <line x1="300" y1="370" x2="600" y2="370" stroke="#bbbbbb" stroke-width="0.8" opacity="0.3" style="animation: moveLR 40s linear infinite 5s;"/>
+
+  <!-- Мягко покачивающаяся горизонтальная линия (бегает по высоте) -->
+  <line x1="400" y1="120" x2="800" y2="120" stroke="#aaaaaa" stroke-width="1" opacity="0.2">
+    <animate attributeName="y1" values="120;140;120" dur="8s" repeatCount="indefinite"/>
+    <animate attributeName="y2" values="120;140;120" dur="8s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- Текст -->
+  <text x="600" y="195" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="bold" fill="none" stroke="white" stroke-width="6" stroke-linejoin="round">FeodorCore</text>
+  <text x="600" y="270" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="normal" fill="none" stroke="white" stroke-width="5" stroke-linejoin="round" letter-spacing="4">SOFTWARE ENGINEER</text>
+
+  <text x="600" y="195" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="bold" fill="black" stroke="none">FeodorCore</text>
+  <text x="600" y="270" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="normal" fill="black" stroke="none" letter-spacing="4">SOFTWARE ENGINEER</text>
+</svg>
