@@ -2,8 +2,6 @@
 
 ## Built to understand, not to impress.
 
----
-
 ### About me
 
 - Algorithms. Architecture. Patterns. Internals.
