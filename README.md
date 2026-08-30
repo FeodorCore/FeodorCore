@@ -2,7 +2,7 @@
 
 ## Built to understand, not to impress.
 
-### About me
+### What I care about
 
 - Algorithms. Architecture. Patterns. Internals.
 - Digging deep. Learning. Building.
