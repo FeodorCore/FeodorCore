@@ -7,6 +7,5 @@
 - Algorithms. Architecture. Patterns. Internals.
 - Digging deep. Learning. Building.
 - Design. Abstractions. Trade-offs.
----
 
 <img src="footer.svg" alt="end">
