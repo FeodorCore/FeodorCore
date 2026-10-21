@@ -6,6 +6,6 @@
 - Digging deep. Learning. Building.
 - Design. Abstractions. Trade-offs.
 
-return 0 ;)
+### return 0 ;)
 
 <img src="footer.svg" alt="end">
