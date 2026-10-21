@@ -1,126 +1,282 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" width="100%" height="auto">
   <defs>
     <style>
-      /* Движение по разным направлениям */
-      @keyframes moveLR { 0% { transform: translate(-50px,0); } 100% { transform: translate(1300px,0); } }
-      @keyframes moveRL { 0% { transform: translate(1250px,0); } 100% { transform: translate(-100px,0); } }
-      @keyframes moveTD { 0% { transform: translate(0,-30px); } 100% { transform: translate(0,230px); } }
-      @keyframes moveDT { 0% { transform: translate(0,230px); } 100% { transform: translate(0,-30px); } }
-      @keyframes moveDiag1 { 0% { transform: translate(-50px,-50px); } 100% { transform: translate(1300px,250px); } }
-      @keyframes moveDiag2 { 0% { transform: translate(1250px,-50px); } 100% { transform: translate(-100px,250px); } }
+      /* ==================================================================
+         ЕДИНАЯ ДИЗАЙН-СИСТЕМА ПРОФИЛЯ · ПОДВАЛ / footer.svg
+         палитра (монохром): #6f6f6f · #8f8f8f · #999 · #aaa · #bbb
+         весь фон рисуется ДО текста, чтобы заголовок оставался читаемым
+         ================================================================== */
 
-      /* Пульсация для акцентов */
-      @keyframes fadePulse { 0%,100%{ opacity:0.1 } 50%{ opacity:0.55 } }
-      @keyframes fadePulseSmall { 0%,100%{ opacity:0.2 } 50%{ opacity:0.6 } }
+      /* --- дрейф частиц: шесть направлений --- */
+      @keyframes f-moveLR  { from { transform: translate(-60px, 0) }      to { transform: translate(1300px, 0) } }
+      @keyframes f-moveRL  { from { transform: translate(1260px, 0) }     to { transform: translate(-120px, 0) } }
+      @keyframes f-moveTD  { from { transform: translate(0, -60px) }      to { transform: translate(0, 260px) } }
+      @keyframes f-moveDT  { from { transform: translate(0, 260px) }   to { transform: translate(0, -60px) } }
+      @keyframes f-moveDg1 { from { transform: translate(-60px, -60px) }  to { transform: translate(1300px, 260px) } }
+      @keyframes f-moveDg2 { from { transform: translate(1260px, -60px) } to { transform: translate(-120px, 260px) } }
 
-      /* Бесконечное смещение волны */
-      @keyframes drift { 0% { transform: translateX(0); } 100% { transform: translateX(-200px); } }
+      /* --- пульс точек --- */
+      @keyframes f-pulseSoft { 0%, 100% { opacity: .16 } 50% { opacity: .55 } }
+      @keyframes f-blink     { 0%, 49%  { opacity: .85 } 50%, 100% { opacity: 0 } }
+
+      /* --- волна: сдвиг ровно на один период (200px) → шов незаметен --- */
+      @keyframes f-drift { from { transform: translateX(0) } to { transform: translateX(-200px) } }
+
+      /* --- метеор: быстрый росчерк и длинная пауза --- */
+      @keyframes f-meteor {
+        0%   { opacity: 0; transform: translate(0, 0) }
+        2%   { opacity: .9 }
+        9%   { opacity: 0; transform: translate(300px, 150px) }
+        100% { opacity: 0; transform: translate(300px, 150px) }
+      }
+
+      /* --- мягкий луч, проходящий через весь баннер --- */
+      @keyframes f-sweep {
+        0%   { opacity: 0;  transform: translateX(-540px) }
+        14%  { opacity: .5 }
+        60%  { opacity: .5 }
+        100% { opacity: 0;  transform: translateX(1540px) }
+      }
+
+      /* --- классы --- */
+      .f-node  { animation: f-pulseSoft 4s ease-in-out infinite }
+      .f-caret { fill: #5a5a5a; animation: f-blink 1.1s infinite }
+
+      /* --- три слоя волны --- */
+      .f-w1 { fill: #aaaaaa }
+      .f-w2 { fill: #999999 }
+      .f-w3 { fill: #6f6f6f }
+
+      /* тёмная тема: тёмно-серая волна на тёмном фоне не читается → осветляем */
+      @media (prefers-color-scheme: dark) {
+        .f-w1    { fill: #8c8c8c }
+        .f-w2    { fill: #a9a9a9 }
+        .f-w3    { fill: #d2d2d2 }
+        .f-caret { fill: #e8e8e8 }
+      }
+
     </style>
 
-    <filter id="gooFilter" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+    <!-- «жидкая» волна: blur + контрастная матрица альфы -->
+    <filter id="f--goo" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
       <feColorMatrix in="blur" mode="matrix"
-        values="1 0 0 0 0  
-                0 1 0 0 0  
-                0 0 1 0 0  
-                0 0 0 18 -7" result="goo" />
-      <feBlend in="SourceGraphic" in2="goo" />
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 18 -7" result="goo"/>
+      <feBlend in="SourceGraphic" in2="goo"/>
     </filter>
 
-    <!-- Период волны 200px -->
-    <path id="wave-period" d="M 0,20 C 50,20 50,5 100,5 C 150,5 150,20 200,20 L 200,80 L 0,80 Z" />
+    <!-- градиент луча-развёртки -->
+    <linearGradient id="f--sweepg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"  stop-color="#9a9a9a" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#9a9a9a" stop-opacity=".24"/>
+      <stop offset="1"  stop-color="#9a9a9a" stop-opacity="0"/>
+    </linearGradient>
 
-    <!-- Маленькая звёздочка (4 луча) -->
-    <g id="star4">
-      <polygon points="0,-6 1.5,-1.5 6,0 1.5,1.5 0,6 -1.5,1.5 -6,0 -1.5,-1.5" fill="#aaaaaa" />
-    </g>
+    <!-- градиент хвоста метеора -->
+    <linearGradient id="f--meteorg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c9c9c9" stop-opacity="0"/>
+      <stop offset="1" stop-color="#c9c9c9" stop-opacity=".95"/>
+    </linearGradient>
+
+    <!-- период волны, 200px -->
+    <path id="f--wave" d="M 0,20 C 50,20 50,5 100,5 C 150,5 150,20 200,20 L 200,80 L 0,80 Z"/>
+
+    <!-- искра-звезда, четыре луча (центрирована в 0,0) -->
+    <path id="f--spark" d="M 0,-9 C 1.1,-2.7 2.7,-1.1 9,0 C 2.7,1.1 1.1,2.7 0,9
+                              C -1.1,2.7 -2.7,1.1 -9,0 C -2.7,-1.1 -1.1,-2.7 0,-9 Z"/>
+
   </defs>
 
-  <!-- ===== МНОЖЕСТВО АНИМИРОВАННЫХ ЧАСТИЦ ===== -->
-
-  <!-- Летящие вправо точки -->
-  <circle cx="0" cy="40" r="2" fill="#aaaaaa" style="animation: moveLR 18s linear infinite; opacity:0.5;" />
-  <circle cx="0" cy="130" r="2.5" fill="#999999" style="animation: moveLR 22s linear infinite 4s; opacity:0.55;" />
-  <circle cx="0" cy="80" r="1.8" fill="#bbbbbb" style="animation: moveLR 25s linear infinite 9s; opacity:0.45;" />
-  <circle cx="0" cy="170" r="2.2" fill="#888888" style="animation: moveLR 19s linear infinite 15s; opacity:0.4;" />
-
-  <!-- Летящие влево точки -->
-  <circle cx="1200" cy="50" r="2.5" fill="#999999" style="animation: moveRL 20s linear infinite 2s; opacity:0.5;" />
-  <circle cx="1200" cy="120" r="2" fill="#aaaaaa" style="animation: moveRL 24s linear infinite 7s; opacity:0.55;" />
-  <circle cx="1200" cy="180" r="1.5" fill="#bbbbbb" style="animation: moveRL 19s linear infinite 12s; opacity:0.45;" />
-  <circle cx="1200" cy="20" r="2.8" fill="#888888" style="animation: moveRL 27s linear infinite 18s; opacity:0.4;" />
-
-  <!-- Вертикальные точки -->
-  <circle cx="180" cy="0" r="2" fill="#aaaaaa" style="animation: moveTD 23s linear infinite 3s; opacity:0.5;" />
-  <circle cx="950" cy="0" r="2.5" fill="#999999" style="animation: moveTD 20s linear infinite 8s; opacity:0.45;" />
-  <circle cx="600" cy="200" r="2" fill="#888888" style="animation: moveDT 21s linear infinite 1s; opacity:0.5;" />
-  <circle cx="350" cy="200" r="1.8" fill="#bbbbbb" style="animation: moveDT 26s linear infinite 14s; opacity:0.4;" />
-  <circle cx="850" cy="0" r="2.2" fill="#aaaaaa" style="animation: moveTD 22s linear infinite 11s; opacity:0.4;" />
-
-  <!-- Диагональные частицы -->
-  <circle cx="0" cy="0" r="2.2" fill="#999999" style="animation: moveDiag1 28s linear infinite; opacity:0.45;" />
-  <circle cx="1200" cy="0" r="1.8" fill="#aaaaaa" style="animation: moveDiag2 26s linear infinite 6s; opacity:0.5;" />
-  <circle cx="0" cy="200" r="2.5" fill="#888888" style="animation: moveDiag2 30s linear infinite 13s; opacity:0.4;" />
-  <circle cx="300" cy="0" r="2" fill="#bbbbbb" style="animation: moveDiag1 24s linear infinite 10s; opacity:0.45;" />
-
-  <!-- Пульсирующие статические акценты (звёзды и точки) -->
-  <use href="#star4" x="120" y="100" style="animation: fadePulse 3.5s ease-in-out infinite;" />
-  <use href="#star4" x="1080" y="60" style="animation: fadePulse 4s ease-in-out infinite 1.2s;" />
-  <use href="#star4" x="500" y="150" style="animation: fadePulse 3s ease-in-out infinite 2.5s;" />
-  <use href="#star4" x="750" y="30" style="animation: fadePulse 5s ease-in-out infinite 0.7s;" />
-  <use href="#star4" x="200" y="170" style="animation: fadePulse 4.5s ease-in-out infinite 3s;" />
-  <use href="#star4" x="900" y="140" style="animation: fadePulse 3.8s ease-in-out infinite 1.8s;" />
-
-  <!-- Дополнительные пульсирующие круги -->
-  <circle cx="60" cy="140" r="2.5" fill="#bbbbbb" style="animation: fadePulseSmall 3s ease-in-out infinite 0.5s;" />
-  <circle cx="1020" cy="160" r="3" fill="#aaaaaa" style="animation: fadePulseSmall 4.2s ease-in-out infinite 2s;" />
-  <circle cx="400" cy="80" r="2" fill="#999999" style="animation: fadePulseSmall 3.5s ease-in-out infinite 1.5s;" />
-  <circle cx="680" cy="100" r="2.5" fill="#888888" style="animation: fadePulseSmall 2.8s ease-in-out infinite 3.2s;" />
-
-  <!-- Плавающие короткие линии -->
-  <line x1="100" y1="60" x2="250" y2="60" stroke="#aaaaaa" stroke-width="1.2" opacity="0.3" style="animation: moveLR 35s linear infinite;" />
-  <line x1="850" y1="150" x2="1050" y2="150" stroke="#999999" stroke-width="1" opacity="0.25" style="animation: moveRL 33s linear infinite 5s;" />
-  <line x1="500" y1="40" x2="700" y2="40" stroke="#bbbbbb" stroke-width="0.8" opacity="0.3" style="animation: moveLR 40s linear infinite 8s;" />
-
-  <!-- ===== ВОЛНА СНИЗУ (без текста) ===== -->
-  <g filter="url(#gooFilter)" style="transform: translateY(135px);">
-    <!-- Задний слой -->
-    <g opacity="0.25">
-      <use href="#wave-period" x="0" y="0" fill="#aaaaaa" style="animation: drift 12s linear infinite;" />
-      <use href="#wave-period" x="200" y="0" fill="#aaaaaa" style="animation: drift 12s linear infinite;" />
-      <use href="#wave-period" x="400" y="0" fill="#aaaaaa" style="animation: drift 12s linear infinite;" />
-      <use href="#wave-period" x="600" y="0" fill="#aaaaaa" style="animation: drift 12s linear infinite;" />
-      <use href="#wave-period" x="800" y="0" fill="#aaaaaa" style="animation: drift 12s linear infinite;" />
-      <use href="#wave-period" x="1000" y="0" fill="#aaaaaa" style="animation: drift 12s linear infinite;" />
-      <use href="#wave-period" x="1200" y="0" fill="#aaaaaa" style="animation: drift 12s linear infinite;" />
-      <use href="#wave-period" x="1400" y="0" fill="#aaaaaa" style="animation: drift 12s linear infinite;" />
-      <use href="#wave-period" x="1600" y="0" fill="#aaaaaa" style="animation: drift 12s linear infinite;" />
+  <!-- 1. мягкий луч-развёртка -->
+  <g style="animation:f-sweep 15s ease-in-out -9s infinite">
+    <g transform="skewX(-12)">
+      <rect x="0" y="-60" width="250" height="320" fill="url(#f--sweepg)"/>
     </g>
-    <!-- Средний слой -->
-    <g opacity="0.5">
-      <use href="#wave-period" x="-200" y="8" fill="#999999" style="animation: drift 8s linear infinite; animation-direction: reverse;" />
-      <use href="#wave-period" x="0" y="8" fill="#999999" style="animation: drift 8s linear infinite; animation-direction: reverse;" />
-      <use href="#wave-period" x="200" y="8" fill="#999999" style="animation: drift 8s linear infinite; animation-direction: reverse;" />
-      <use href="#wave-period" x="400" y="8" fill="#999999" style="animation: drift 8s linear infinite; animation-direction: reverse;" />
-      <use href="#wave-period" x="600" y="8" fill="#999999" style="animation: drift 8s linear infinite; animation-direction: reverse;" />
-      <use href="#wave-period" x="800" y="8" fill="#999999" style="animation: drift 8s linear infinite; animation-direction: reverse;" />
-      <use href="#wave-period" x="1000" y="8" fill="#999999" style="animation: drift 8s linear infinite; animation-direction: reverse;" />
-      <use href="#wave-period" x="1200" y="8" fill="#999999" style="animation: drift 8s linear infinite; animation-direction: reverse;" />
-      <use href="#wave-period" x="1400" y="8" fill="#999999" style="animation: drift 8s linear infinite; animation-direction: reverse;" />
-      <use href="#wave-period" x="1600" y="8" fill="#999999" style="animation: drift 8s linear infinite; animation-direction: reverse;" />
+  </g>
+
+  <!-- 2. поле частиц: шесть направлений -->
+  <circle cx="0" cy="40" r="2.0" fill="#aaaaaa" opacity="0.5" style="animation:f-moveLR 18s linear -2s infinite"/>
+  <circle cx="0" cy="130" r="2.5" fill="#999999" opacity="0.55" style="animation:f-moveLR 22s linear -7s infinite"/>
+  <circle cx="0" cy="80" r="1.8" fill="#bbbbbb" opacity="0.45" style="animation:f-moveLR 25s linear -12s infinite"/>
+  <circle cx="0" cy="170" r="2.2" fill="#8f8f8f" opacity="0.4" style="animation:f-moveLR 19s linear -16s infinite"/>
+  <circle cx="1200" cy="50" r="2.5" fill="#999999" opacity="0.5" style="animation:f-moveRL 20s linear -3s infinite"/>
+  <circle cx="1200" cy="120" r="2.0" fill="#aaaaaa" opacity="0.55" style="animation:f-moveRL 24s linear -8s infinite"/>
+  <circle cx="1200" cy="180" r="1.5" fill="#bbbbbb" opacity="0.45" style="animation:f-moveRL 19s linear -14s infinite"/>
+  <circle cx="1200" cy="20" r="2.8" fill="#8f8f8f" opacity="0.4" style="animation:f-moveRL 27s linear -19s infinite"/>
+  <circle cx="180" cy="0" r="2.0" fill="#aaaaaa" opacity="0.5" style="animation:f-moveTD 23s linear -4s infinite"/>
+  <circle cx="950" cy="0" r="2.5" fill="#999999" opacity="0.45" style="animation:f-moveTD 20s linear -9s infinite"/>
+  <circle cx="850" cy="0" r="2.2" fill="#aaaaaa" opacity="0.4" style="animation:f-moveTD 22s linear -13s infinite"/>
+  <circle cx="430" cy="0" r="1.8" fill="#bbbbbb" opacity="0.38" style="animation:f-moveTD 26s linear -18s infinite"/>
+  <circle cx="600" cy="200" r="2.0" fill="#8f8f8f" opacity="0.5" style="animation:f-moveDT 21s linear -1s infinite"/>
+  <circle cx="350" cy="200" r="1.8" fill="#bbbbbb" opacity="0.4" style="animation:f-moveDT 26s linear -15s infinite"/>
+  <circle cx="1080" cy="200" r="2.2" fill="#999999" opacity="0.42" style="animation:f-moveDT 24s linear -6s infinite"/>
+  <g transform="translate(0,0)"><circle cx="0" cy="0" r="2.2" fill="#999999" opacity="0.45" style="animation:f-moveDg1 28s linear -3s infinite"/></g>
+  <g transform="translate(0,60)"><circle cx="0" cy="0" r="1.8" fill="#bbbbbb" opacity="0.35" style="animation:f-moveDg1 33s linear -17s infinite"/></g>
+  <g transform="translate(0,20)"><circle cx="0" cy="0" r="1.8" fill="#aaaaaa" opacity="0.5" style="animation:f-moveDg2 26s linear -8s infinite"/></g>
+  <g transform="translate(0,-20)"><circle cx="0" cy="0" r="2.5" fill="#8f8f8f" opacity="0.4" style="animation:f-moveDg2 30s linear -13s infinite"/></g>
+
+  <!-- 3. пульсирующие точки-акценты -->
+  <circle cx="60" cy="120" r="2.5" fill="#bbbbbb" class="f-node" style="animation-duration:3.0s;animation-delay:-0.5s"/>
+  <circle cx="400" cy="80" r="2" fill="#999999" class="f-node" style="animation-duration:3.5s;animation-delay:-1.5s"/>
+  <circle cx="680" cy="100" r="2.5" fill="#8f8f8f" class="f-node" style="animation-duration:2.8s;animation-delay:-3.2s"/>
+  <circle cx="1140" cy="118" r="3" fill="#aaaaaa" class="f-node" style="animation-duration:4.2s;animation-delay:-2.0s"/>
+  <circle cx="820" cy="42" r="2" fill="#bbbbbb" class="f-node" style="animation-duration:3.3s;animation-delay:-1.0s"/>
+  <circle cx="520" cy="26" r="2.2" fill="#999999" class="f-node" style="animation-duration:4.6s;animation-delay:-2.7s"/>
+
+  <!-- 4. короткие плавающие линии -->
+  <path d="M 100,60 H 250" stroke="#aaaaaa" stroke-width="1.2" opacity="0.3" fill="none" style="animation:f-moveLR 35s linear -5s infinite"/>
+  <path d="M 850,150 H 1050" stroke="#999999" stroke-width="1" opacity="0.25" fill="none" style="animation:f-moveRL 33s linear -12s infinite"/>
+  <path d="M 500,40 H 700" stroke="#bbbbbb" stroke-width="0.8" opacity="0.3" fill="none" style="animation:f-moveLR 40s linear -22s infinite"/>
+
+  <!-- 5. мерцающие звёзды-искры (scale через SMIL: геометрия
+       искры центрирована в 0,0, transform-origin не нужен) -->
+  <g transform="translate(330,58) scale(0.8)">
+    <g opacity=".3">
+      <animateTransform attributeName="transform" type="scale" values=".5;1.12;.5"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="4.4s" begin="-0.0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".06;0.8;.06"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="4.4s" begin="-0.0s" repeatCount="indefinite"/>
+      <use href="#f--spark" fill="#b3b3b3"/>
     </g>
-    <!-- Передний слой -->
-    <g opacity="0.85">
-      <use href="#wave-period" x="-200" y="16" fill="#666666" style="animation: drift 6s linear infinite;" />
-      <use href="#wave-period" x="0" y="16" fill="#666666" style="animation: drift 6s linear infinite;" />
-      <use href="#wave-period" x="200" y="16" fill="#666666" style="animation: drift 6s linear infinite;" />
-      <use href="#wave-period" x="400" y="16" fill="#666666" style="animation: drift 6s linear infinite;" />
-      <use href="#wave-period" x="600" y="16" fill="#666666" style="animation: drift 6s linear infinite;" />
-      <use href="#wave-period" x="800" y="16" fill="#666666" style="animation: drift 6s linear infinite;" />
-      <use href="#wave-period" x="1000" y="16" fill="#666666" style="animation: drift 6s linear infinite;" />
-      <use href="#wave-period" x="1200" y="16" fill="#666666" style="animation: drift 6s linear infinite;" />
-      <use href="#wave-period" x="1400" y="16" fill="#666666" style="animation: drift 6s linear infinite;" />
-      <use href="#wave-period" x="1600" y="16" fill="#666666" style="animation: drift 6s linear infinite;" />
+  </g>
+  <g transform="translate(455,118) scale(0.6)">
+    <g opacity=".3">
+      <animateTransform attributeName="transform" type="scale" values=".5;1.12;.5"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="3.6s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".06;0.7;.06"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="3.6s" begin="-1.1s" repeatCount="indefinite"/>
+      <use href="#f--spark" fill="#b3b3b3"/>
+    </g>
+  </g>
+  <g transform="translate(560,52) scale(1.05)">
+    <g opacity=".3">
+      <animateTransform attributeName="transform" type="scale" values=".5;1.12;.5"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="5.0s" begin="-2.3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".06;0.75;.06"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="5.0s" begin="-2.3s" repeatCount="indefinite"/>
+      <use href="#f--spark" fill="#c0c0c0"/>
+    </g>
+  </g>
+  <g transform="translate(700,42) scale(0.7)">
+    <g opacity=".3">
+      <animateTransform attributeName="transform" type="scale" values=".5;1.12;.5"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="4.0s" begin="-0.6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".06;0.7;.06"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="4.0s" begin="-0.6s" repeatCount="indefinite"/>
+      <use href="#f--spark" fill="#b3b3b3"/>
+    </g>
+  </g>
+  <g transform="translate(795,112) scale(0.85)">
+    <g opacity=".3">
+      <animateTransform attributeName="transform" type="scale" values=".5;1.12;.5"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="4.8s" begin="-1.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".06;0.75;.06"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="4.8s" begin="-1.7s" repeatCount="indefinite"/>
+      <use href="#f--spark" fill="#c0c0c0"/>
+    </g>
+  </g>
+  <g transform="translate(880,58) scale(0.6)">
+    <g opacity=".3">
+      <animateTransform attributeName="transform" type="scale" values=".5;1.12;.5"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="4.2s" begin="-0.3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".06;0.65;.06"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="4.2s" begin="-0.3s" repeatCount="indefinite"/>
+      <use href="#f--spark" fill="#b3b3b3"/>
+    </g>
+  </g>
+  <g transform="translate(1010,120) scale(0.75)">
+    <g opacity=".3">
+      <animateTransform attributeName="transform" type="scale" values=".5;1.12;.5"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="3.9s" begin="-2.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".06;0.7;.06"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="3.9s" begin="-2.8s" repeatCount="indefinite"/>
+      <use href="#f--spark" fill="#c0c0c0"/>
+    </g>
+  </g>
+  <g transform="translate(1090,50) scale(0.95)">
+    <g opacity=".3">
+      <animateTransform attributeName="transform" type="scale" values=".5;1.12;.5"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="5.2s" begin="-1.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".06;0.8;.06"
+        keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1"
+        dur="5.2s" begin="-1.4s" repeatCount="indefinite"/>
+      <use href="#f--spark" fill="#b3b3b3"/>
+    </g>
+  </g>
+
+  <!-- 6. метеоры -->
+  <g transform="translate(180,-30)">
+    <g style="animation:f-meteor 15s linear -4s infinite">
+      <g transform="rotate(27)">
+        <rect x="-76" y="-.8" width="76" height="1.6" fill="url(#f--meteorg)"/>
+        <circle r="2.1" fill="#d0d0d0"/>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(760,-40)">
+    <g style="animation:f-meteor 19s linear -11s infinite">
+      <g transform="rotate(27)">
+        <rect x="-66" y="-.8" width="66" height="1.6" fill="url(#f--meteorg)"/>
+        <circle r="2.1" fill="#d0d0d0"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- 7. жидкая волна (снизу) -->
+  <g transform="translate(0,135)" filter="url(#f--goo)">
+    <g opacity=".25" style="animation:f-drift 12ss linear infinite">
+      <use href="#f--wave" x="-200" y="0" class="f-w1"/>
+      <use href="#f--wave" x="0" y="0" class="f-w1"/>
+      <use href="#f--wave" x="200" y="0" class="f-w1"/>
+      <use href="#f--wave" x="400" y="0" class="f-w1"/>
+      <use href="#f--wave" x="600" y="0" class="f-w1"/>
+      <use href="#f--wave" x="800" y="0" class="f-w1"/>
+      <use href="#f--wave" x="1000" y="0" class="f-w1"/>
+      <use href="#f--wave" x="1200" y="0" class="f-w1"/>
+      <use href="#f--wave" x="1400" y="0" class="f-w1"/>
+      <use href="#f--wave" x="1600" y="0" class="f-w1"/>
+    </g>
+    <g opacity=".5" style="animation:f-drift 8ss linear infinite reverse">
+      <use href="#f--wave" x="-200" y="8" class="f-w2"/>
+      <use href="#f--wave" x="0" y="8" class="f-w2"/>
+      <use href="#f--wave" x="200" y="8" class="f-w2"/>
+      <use href="#f--wave" x="400" y="8" class="f-w2"/>
+      <use href="#f--wave" x="600" y="8" class="f-w2"/>
+      <use href="#f--wave" x="800" y="8" class="f-w2"/>
+      <use href="#f--wave" x="1000" y="8" class="f-w2"/>
+      <use href="#f--wave" x="1200" y="8" class="f-w2"/>
+      <use href="#f--wave" x="1400" y="8" class="f-w2"/>
+      <use href="#f--wave" x="1600" y="8" class="f-w2"/>
+    </g>
+    <g opacity=".85" style="animation:f-drift 6ss linear infinite">
+      <use href="#f--wave" x="-200" y="16" class="f-w3"/>
+      <use href="#f--wave" x="0" y="16" class="f-w3"/>
+      <use href="#f--wave" x="200" y="16" class="f-w3"/>
+      <use href="#f--wave" x="400" y="16" class="f-w3"/>
+      <use href="#f--wave" x="600" y="16" class="f-w3"/>
+      <use href="#f--wave" x="800" y="16" class="f-w3"/>
+      <use href="#f--wave" x="1000" y="16" class="f-w3"/>
+      <use href="#f--wave" x="1200" y="16" class="f-w3"/>
+      <use href="#f--wave" x="1400" y="16" class="f-w3"/>
+      <use href="#f--wave" x="1600" y="16" class="f-w3"/>
     </g>
   </g>
 </svg>

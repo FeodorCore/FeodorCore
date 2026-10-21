@@ -1,11 +1,11 @@
 <img src="header.svg" alt="FeodorCore" >
 
-## Built to understand, not to impress.
-
-### What I care about
+## What I care about
 
 - Algorithms. Architecture. Patterns. Internals.
 - Digging deep. Learning. Building.
 - Design. Abstractions. Trade-offs.
+
+return 0 ;)
 
 <img src="footer.svg" alt="end">
